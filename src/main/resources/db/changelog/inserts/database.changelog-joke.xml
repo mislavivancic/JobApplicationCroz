@@ -1,0 +1,17 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="201905312002" author="Mislav Ivancic" failOnError="true" runInTransaction="false">
+        <comment>Test inserts.</comment>
+
+        <insert schemaName="PUBLIC" tableName="JOKE">
+            <column name="ID" type="BIGINT">12</column>
+            <column name="CONTENT" type="TEXT">Kako se zove vepar s tri noge? Marko.</column>
+        </insert>
+
+        <insert schemaName="PUBLIC" tableName="JOKE">
+            <column name="CONTENT" type="TEXT">Kako se zove vepar s cetiri noge? Luka.</column>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
