@@ -3,7 +3,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
     <changeSet id="201905311639" author="Mislav Ivancic" failOnError="true">
         <createTable tableName="CATEGORY" schemaName="PUBLIC">
-            <column name="ID" type="BIGINT">
+            <column name="ID" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="NAME" type="VARCHAR(128)">
