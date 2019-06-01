@@ -18,4 +18,9 @@ public class JokeServiceImpl implements JokeService{
     public List<Joke> listAll() {
         return jokeRepository.findAll();
     }
+
+    @Override
+    public Joke save(Joke joke) {
+        return jokeRepository.save(joke);
+    }
 }

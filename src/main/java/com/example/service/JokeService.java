@@ -9,4 +9,6 @@ public interface JokeService {
 
     List<Joke> listAll();
 
+    Joke save(Joke joke);
+
 }

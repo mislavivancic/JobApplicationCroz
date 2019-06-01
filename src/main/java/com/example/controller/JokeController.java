@@ -1,28 +1,35 @@
 package com.example.controller;
 
+import com.example.form.JokeForm;
 import com.example.model.Joke;
+import com.example.service.JokeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.example.service.JokeService;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-
-//@RequestMapping("/jokes")
 @Controller
 public class JokeController {
 
     @Autowired
     private JokeService jokeService;
 
-    @GetMapping("/")
+    @GetMapping("/new")
     public String listJokes(Model model){
-        model.addAttribute("jokes",jokeService.listAll());
-        return "jokes";
+        model.addAttribute("jokeForm", new JokeForm());
+        System.out.println("tu sam bio");
+        return "newJoke";
     }
+    @PostMapping("/new")
+    public String greetingSubmit(@ModelAttribute JokeForm jokeForm) {
+        Joke joke = new Joke();
+        joke.setContent(jokeForm.getContent());
+        jokeService.save(joke);
+        return "jokeAdded";
+    }
+
+
 
 }
