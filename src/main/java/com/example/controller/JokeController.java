@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.form.JokeForm;
 import com.example.model.Joke;
+import com.example.repository.CategoryRepository;
 import com.example.service.JokeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,18 +17,27 @@ public class JokeController {
     @Autowired
     private JokeService jokeService;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @GetMapping("/new")
-    public String listJokes(Model model){
+    public String addJoke(Model model){
         model.addAttribute("jokeForm", new JokeForm());
-        System.out.println("tu sam bio");
+        model.addAttribute("categories",categoryRepository.findAll());
         return "newJoke";
     }
     @PostMapping("/new")
-    public String greetingSubmit(@ModelAttribute JokeForm jokeForm) {
+    public String addedJoke(@ModelAttribute JokeForm jokeForm) {
         Joke joke = new Joke();
         joke.setContent(jokeForm.getContent());
         jokeService.save(joke);
         return "jokeAdded";
+    }
+
+    @GetMapping("")
+    public String allJokes(Model model){
+        model.addAttribute("jokes",jokeService.listAll());
+        return "allJokes";
     }
 
 

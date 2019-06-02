@@ -13,6 +13,15 @@
     <p>Joke text</p>
     <p><textarea required id="txtArea" rows="3" cols="40" th:field="*{content}"></textarea></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+
+    <p><h3>Categories</h3></p>
+    <p>
+       <select>
+            <option value=""> -- </option>
+            <option th:each="category : ${categories}" th:utext="${category.name}"></option>
+        </select>
+    </p>
+
 </form>
 </body>
 </html>

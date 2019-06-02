@@ -1,0 +1,14 @@
+<table xmlns:th="http://www.w3.org/1999/xhtml">
+    <thead>
+    <h1>--Best Jokes--</h1>
+    </thead>
+    <tbody>
+    <tr th:if="${jokes.empty}">
+        <td colspan="2"> No Books Available </td>
+    </tr>
+    <tr th:each="joke,iterator : ${jokes}">
+        <td><span th:text="${iterator.index + 1}">  </span></td>
+        <td><span th:text="${joke.content}"> Joke </span></td>
+    </tr>
+    </tbody>
+</table>

@@ -50,7 +50,7 @@
             <column name="CATEGORY_ID" type="BIGINT">-8</column>
             <column name="JOKE_ID" type="BIGINT">-2</column>
         </insert>
-        
+
         <insert schemaName="PUBLIC" tableName="CATEGORY_JOKES">
             <column name="CATEGORY_ID" type="BIGINT">-12</column>
             <column name="JOKE_ID" type="BIGINT">-3</column>
