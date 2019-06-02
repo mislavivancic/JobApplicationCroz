@@ -23,6 +23,9 @@ public class Joke {
     @Column(name = "DISLIKES")
     private int dislikes;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
 
     public Long getId() {
         return id;
@@ -56,6 +59,15 @@ public class Joke {
         this.dislikes = dislikes;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -64,21 +76,12 @@ public class Joke {
         return likes == joke.likes &&
                 dislikes == joke.dislikes &&
                 Objects.equals(id, joke.id) &&
-                Objects.equals(content, joke.content);
+                Objects.equals(content, joke.content) &&
+                Objects.equals(category, joke.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, content, likes, dislikes);
-    }
-
-    @Override
-    public String toString() {
-        return "Joke{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", likes=" + likes +
-                ", dislikes=" + dislikes +
-                '}';
+        return Objects.hash(id, content, likes, dislikes, category);
     }
 }

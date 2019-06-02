@@ -1,4 +1,5 @@
-<table xmlns:th="http://www.w3.org/1999/xhtml">
+<span style="font-family:Consolas; ">
+<table border="2" style="width:30%" xmlns:th="http://www.w3.org/1999/xhtml">
     <thead>
     <h1>--Best Jokes--</h1>
     </thead>
@@ -6,9 +7,24 @@
     <tr th:if="${jokes.empty}">
         <td colspan="2"> No Books Available </td>
     </tr>
+    <tr>
+        <th>#</th>
+        <th>Kategorija</th>
+        <th>Vic</th>
+        <th>Likes</th>
+        <th>Dislikes</th>
+        <th>Razlika</th>
+
+<x></x>
+    </tr>
     <tr th:each="joke,iterator : ${jokes}">
-        <td><span th:text="${iterator.index + 1}">  </span></td>
+        <td style="text-align:center"><span th:text="${iterator.index + 1}">  </span></td>
+        <td><span th:text="${joke.category.name}"> Joke </span></td>
         <td><span th:text="${joke.content}"> Joke </span></td>
+        <td style="text-align:center"><span th:text="${joke.likes}"> Joke </span></td>
+        <td style="text-align:center"><span  th:text="${joke.dislikes}"> Joke </span></td>
+        <td style="text-align:center"><span  th:text="${joke.likes-joke.dislikes}"> Joke </span></td>
+        <td><button th:onclick="|onClick('${joke.id}')|">Like</button><button>Dislike</button></td>
     </tr>
     </tbody>
-</table>
+</table></span>

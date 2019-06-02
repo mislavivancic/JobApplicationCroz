@@ -14,12 +14,18 @@
     <p><textarea required id="txtArea" rows="3" cols="40" th:field="*{content}"></textarea></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 
-    <p><h3>Categories</h3></p>
     <p>
-       <select>
+    <table><tr>
+    <td>Select Category</td>
+    <td>
+       <select th:field="*{category}">
             <option value=""> -- </option>
-            <option th:each="category : ${categories}" th:utext="${category.name}"></option>
-        </select>
+            <option th:value="${categoryItem.id}"
+                    th:each="categoryItem : ${categories}"
+                    th:utext="${categoryItem.name}"></option>
+        </select></td>
+</tr>
+    </table>
     </p>
 
 </form>

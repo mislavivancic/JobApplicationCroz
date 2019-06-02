@@ -30,6 +30,7 @@ public class JokeController {
     public String addedJoke(@ModelAttribute JokeForm jokeForm) {
         Joke joke = new Joke();
         joke.setContent(jokeForm.getContent());
+        joke.setCategory(jokeForm.getCategory());
         jokeService.save(joke);
         return "jokeAdded";
     }
@@ -39,6 +40,12 @@ public class JokeController {
         model.addAttribute("jokes",jokeService.listAll());
         return "allJokes";
     }
+
+    public void onClick(Long jokeId){
+        System.out.print("aaa\n");
+    }
+
+
 
 
 
