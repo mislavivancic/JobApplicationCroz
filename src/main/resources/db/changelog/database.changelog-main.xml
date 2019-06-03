@@ -5,14 +5,9 @@
 
     <include file="changelogs/database.changelog-category.xml" relativeToChangelogFile="true"/>
     <include file="changelogs/database.changelog-joke.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/database.changelog-category-jokes.xml" relativeToChangelogFile="true"/>
 
 
-    <include file="changelogs/database.changelog-fk.xml" relativeToChangelogFile="true"/>
-
-
-
-    <include file="inserts/database.changelog-joke.xml" relativeToChangelogFile="true"/>
+    <!--<include file="inserts/database.changelog-joke.xml" relativeToChangelogFile="true"/>-->
 
 
 </databaseChangeLog>
