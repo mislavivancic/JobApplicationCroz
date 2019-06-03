@@ -20,16 +20,17 @@
         <td style="text-align:center"><span th:text="${iterator.index + 1}">  </span></td>
         <td><span th:text="${joke.category.name}"> Joke </span></td>
         <td><span th:text="${joke.content}"> Joke </span></td>
-        <td style="text-align:center"><span th:text="${joke.likes}"> Joke </span></td>
-        <td style="text-align:center"><span th:text="${joke.dislikes}"> Joke </span></td>
+        <td bgcolor="#9acd32" style="text-align:center"><span th:text="${joke.likes}"> Joke </span></td>
+        <td bgcolor="#ff6347" style="text-align:center"><span th:text="${joke.dislikes}"> Joke </span></td>
         <td style="text-align:center"><span th:text="${joke.likes-joke.dislikes}"> Joke </span></td>
-        <td style="align-items: center">
+        <td>
             <form method="POST" th:action="@{/upvote(jokeId=${joke.id})}">
-                <button type="submit" name="like" value="value" class="link-button">Like</button>
+                <button type="submit" name="like" value="value">Like</button>
             </form>
             <form method="POST" th:action="@{/downvote(jokeId=${joke.id})}">
                 <button type="submit" name="like" value="value" class="link-button">Dislike</button>
             </form>
+        </td>
 
 
 
