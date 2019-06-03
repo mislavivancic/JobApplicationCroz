@@ -1,29 +1,36 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<span style="font-family:Consolas; ">
+
 <head>
     <title>Unos vica</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>Add a new Joke</h1>
+<h1>Novi vic</h1>
 
 <!--/*@thymesVar id="jokeForm" type="com.example.form.JokeForm"*/-->
 <form action="#" th:action="@{/new}" th:object="${jokeForm}" method="post">
     <!--<p>Message: <input type="text" th:field="*{content}"/></p>-->
-    <p>Joke text</p>
-    <p><textarea id="txtArea" rows="3" cols="40" th:field="*{content}"></textarea></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <p>Tekst vica</p>
+    <p><textarea id="txtArea" rows="3" cols="40" th:field="*{content}"></textarea>
+    <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Content Error</p>
+    </p>
+    <p><input type="submit" value="Unesi"/> <input type="reset" value="Očisti polja"/></p>
 
     <p>
     <table><tr>
-    <td>Select Category</td>
+    <td>Odaberi kategoriju</td>
     <td>
        <select th:field="*{category}">
             <option value=""> -- </option>
             <option th:value="${categoryItem.id}"
                     th:each="categoryItem : ${categories}"
                     th:utext="${categoryItem.name}"></option>
-        </select></td>
+       </select>
+
+    </td>
+        <td th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Category Error</td>
 </tr>
     </table>
     </p>
@@ -32,4 +39,5 @@
 
 
 </body>
+</span>
 </html>

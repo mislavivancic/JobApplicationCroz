@@ -1,12 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<span style="font-family:Consolas; ">
 <head>
     <title>Vic</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>Unešen vic</h1>
-<p th:text="'content: ' + ${jokeForm.content}" />
+<h1>Uspješno dodan vic</h1>
+<!--/*@thymesVar id="content" type="com.example.form.JokeForm"*/-->
+<p th:text="'Vic: ' + ${jokeForm.content}"></p>
+<p th:text="'Kategorija: ' + ${jokeForm.category.name}"></p>
 
 <form action="/new">
     <input type="submit" value="Unesi još jedan vic"/>
@@ -16,4 +19,5 @@
 </form>
 
 </body>
+    </span>
 </html>

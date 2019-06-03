@@ -34,8 +34,10 @@ public class JokeController {
     }
 
     @PostMapping("/new")
-    public String addedJoke(@Valid @ModelAttribute JokeForm jokeForm, BindingResult bindingResult) {
+    public String addedJoke(@Valid @ModelAttribute JokeForm jokeForm, BindingResult bindingResult, Model model) {
+        System.out.print("aa");
         if (bindingResult.hasErrors()) {
+            model.addAttribute("categories", categoryRepository.findAll());
             return "newJoke";
         }
         Joke joke = new Joke();
