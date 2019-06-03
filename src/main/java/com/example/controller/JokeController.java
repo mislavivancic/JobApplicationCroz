@@ -5,6 +5,8 @@ import com.example.model.Joke;
 import com.example.repository.CategoryRepository;
 import com.example.service.JokeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 public class JokeController {
@@ -47,13 +52,13 @@ public class JokeController {
         return "jokeAdded";
     }
 
-    @GetMapping("")
+   /* @GetMapping("")
     public String allJokes(Model model) {
         List<Joke> jokesList = jokeService.listAll();
         Collections.sort(jokesList, (a, b) -> a.getLikes() - a.getDislikes() > b.getLikes() - b.getDislikes() ? -1 : 1);
         model.addAttribute("jokes", jokesList);
         return "allJokes";
-    }
+    }*/
 
     @PostMapping("/upvote")
     public String upvote(@RequestParam("jokeId") Long jokeId, Model model) {
@@ -63,7 +68,7 @@ public class JokeController {
         List<Joke> jokesList = jokeService.listAll();
         Collections.sort(jokesList, (a, b) -> a.getLikes() - a.getDislikes() > b.getLikes() - b.getDislikes() ? -1 : 1);
         model.addAttribute("jokes", jokesList);
-        return "allJokes";
+        return "redirect:/";
     }
 
     @PostMapping("/downvote")
@@ -74,8 +79,30 @@ public class JokeController {
         List<Joke> jokesList = jokeService.listAll();
         Collections.sort(jokesList, (a, b) -> a.getLikes() - a.getDislikes() > b.getLikes() - b.getDislikes() ? -1 : 1);
         model.addAttribute("jokes", jokesList);
-        return "allJokes";
+        return "redirect:/";
     }
 
+    @GetMapping("/")
+    public String listJokes(Model model, @RequestParam("page") Optional<Integer> page) {
+        int currentPage = page.orElse(1);
+        int pageSize = 10;
+
+        List<Joke> jokesList = jokeService.listAll();
+        model.addAttribute("jokes", jokesList);
+
+        Page<Joke> jokePage = jokeService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+
+        model.addAttribute("jokePage", jokePage);
+
+        int totalPages = jokePage.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
+        return "listJokes";
+    }
 
 }
