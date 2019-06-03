@@ -11,4 +11,8 @@ public interface JokeService {
 
     Joke save(Joke joke);
 
+    Joke update(Joke joke);
+
+    Joke fetch(Long id);
+
 }

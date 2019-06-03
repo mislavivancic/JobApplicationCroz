@@ -2,6 +2,7 @@ package com.example.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -13,7 +14,7 @@ public class Joke {
     @Column(name = "ID" )
     private Long id;
 
-
+    @NotNull
     @Column(name = "CONTENT")
     private String content;
 
@@ -23,6 +24,7 @@ public class Joke {
     @Column(name = "DISLIKES")
     private int dislikes;
 
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;

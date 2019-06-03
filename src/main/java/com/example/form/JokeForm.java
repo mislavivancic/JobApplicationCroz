@@ -3,13 +3,16 @@ package com.example.form;
 
 import com.example.model.Category;
 
+import javax.validation.constraints.NotNull;
+
 public class JokeForm {
 
     private Long id;
 
-
+    @NotNull
     private String content;
 
+    @NotNull
     private Category category;
 
     public Long getId() {

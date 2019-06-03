@@ -23,4 +23,14 @@ public class JokeServiceImpl implements JokeService{
     public Joke save(Joke joke) {
         return jokeRepository.save(joke);
     }
+
+    @Override
+    public Joke update(Joke joke) {
+        return jokeRepository.save(joke);
+    }
+
+    @Override
+    public Joke fetch(Long id) {
+        return jokeRepository.findById(id).get();
+    }
 }
