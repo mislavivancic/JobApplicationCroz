@@ -40,7 +40,7 @@
     </tr>
     </tbody>
 </table>
-<div th:if="${jokePage.totalPages > 0}" class="pagination"
+<div th:style="'display: inline-block'" th:if="${jokePage.totalPages > 0}" class="pagination"
      th:each="pageNumber : ${pageNumbers}">
 
 <a th:href="@{/(page=${pageNumber})}"

@@ -59,6 +59,7 @@ public class JokeServiceImpl implements JokeService{
         Page<Joke> jokePage
                 = new PageImpl<Joke>(list, PageRequest.of(currentPage, pageSize), jokes.size());
 
+
         return jokePage;
     }
 }
